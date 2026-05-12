@@ -1,0 +1,66 @@
+<div class="container">
+
+  <div class="header">
+    <h1>Productos</h1>
+    <button mat-raised-button color="primary" routerLink="/products/new">
+      <mat-icon>add</mat-icon>
+      Nuevo Producto
+    </button>
+  </div>
+
+  @if (loading) {
+
+    <div class="loading">Cargando productos...</div>
+
+  } @else {
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre Comercial</th>
+          <th>Nombre Genérico</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        @for (p of products; track p.id) {
+
+          <tr>
+            <td class="cell-id">{{ p.id }}</td>
+            <td><a class="product-link" [routerLink]="['/products', p.id]">{{ p.comercial_name }}</a></td>
+            <td>{{ p.generic_name }}</td>
+            <td class="cell-price">{{ p.price | currency }}</td>
+            <td><span class="badge">{{ p.quantity }}</span></td>
+
+            <td class="actions">
+              <button mat-mini-fab color="primary" [routerLink]="['/products/edit', p.id]">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button mat-mini-fab color="warn" (click)="delete(p.id!)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+
+        } @empty {
+
+          <tr>
+            <td colspan="6" class="empty">No hay productos registrados</td>
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+  }
+
+</div>

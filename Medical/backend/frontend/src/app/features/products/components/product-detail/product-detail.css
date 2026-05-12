@@ -1,0 +1,148 @@
+.detail-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 24px;
+}
+
+/* HERO */
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #1f2937;
+}
+
+.subtitle {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+/* PRICE CARD */
+
+.price-card {
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  color: white;
+  padding: 24px;
+  border-radius: 18px;
+  min-width: 220px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(25,118,210,0.3);
+}
+
+.price-card span {
+  display: block;
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.price-card h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* GRID */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: 0.2s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+}
+
+.label {
+  display: block;
+  color: #6b7280;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.stock {
+  color: #16a34a;
+}
+
+.expiration {
+  color: #dc2626;
+}
+
+/* DESCRIPTION */
+
+.description-card {
+  margin-top: 30px;
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.description-card h3 {
+  margin-top: 0;
+  color: #1f2937;
+}
+
+.description-card p {
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+/* ACTIONS */
+
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+/* STATES */
+
+.loading,
+.not-found {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .price-card {
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+}

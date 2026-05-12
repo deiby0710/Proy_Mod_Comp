@@ -1,0 +1,117 @@
+@if (loading) {
+
+  <div class="loading">
+    Cargando producto...
+  </div>
+
+} @else if (product) {
+
+  <div class="detail-container">
+
+    <!-- HEADER -->
+    <div class="hero">
+
+      <div>
+
+        <h1>{{ product.comercial_name }}</h1>
+
+        <p class="subtitle">
+          {{ product.generic_name }}
+        </p>
+
+      </div>
+
+      <div class="price-card">
+
+        <span>Precio</span>
+
+        <h2>
+          {{ product.price | currency }}
+        </h2>
+
+      </div>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="info-grid">
+
+      <div class="info-card">
+        <span class="label">Cantidad</span>
+        <span class="value stock">
+          {{ product.quantity }}
+        </span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">Lote</span>
+        <span class="value">
+          {{ product.lote }}
+        </span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">Forma farmacéutica</span>
+        <span class="value">
+          {{ product.pharmaceutic_form }}
+        </span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">CUM</span>
+        <span class="value">
+          {{ product.cum }}
+        </span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">Fecha de vencimiento</span>
+        <span class="value expiration">
+          {{ product.final_date | date }}
+        </span>
+      </div>
+
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="description-card">
+
+      <h3>Descripción</h3>
+
+      <p>
+        {{ product.description }}
+      </p>
+
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+
+      <button
+        mat-raised-button
+        routerLink="/products">
+
+        Volver
+
+      </button>
+
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/products/edit', product.id]">
+
+        Editar
+
+      </button>
+
+    </div>
+
+  </div>
+
+} @else {
+
+  <div class="not-found">
+    Producto no encontrado
+  </div>
+
+}
