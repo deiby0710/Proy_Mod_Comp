@@ -1,0 +1,31 @@
+<main class="module-page">
+  <section class="module-shell">
+    <header class="module-header">
+      <p class="eyebrow">Medical</p>
+      <h1>Panel principal</h1>
+    </header>
+
+    <div class="module-grid" aria-label="Modulos principales">
+      @for (module of modules; track module.title) {
+        @if (module.route) {
+          <button
+            class="module-button module-button--active"
+            type="button"
+            [routerLink]="module.route">
+            <mat-icon aria-hidden="true">{{ module.icon }}</mat-icon>
+            <span>{{ module.title }}</span>
+          </button>
+        } @else {
+          <button
+            class="module-button"
+            type="button"
+            disabled>
+            <mat-icon aria-hidden="true">{{ module.icon }}</mat-icon>
+            <span>{{ module.title }}</span>
+            <small>Proximamente</small>
+          </button>
+        }
+      }
+    </div>
+  </section>
+</main>

@@ -1,0 +1,139 @@
+.detail-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 24px;
+}
+
+.hero {
+  margin-bottom: 30px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1976d2;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 2.4rem;
+}
+
+h2 {
+  margin-bottom: 18px;
+  font-size: 1.25rem;
+}
+
+.subtitle {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.info-card,
+.table-card,
+.note-card {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.label {
+  display: block;
+  color: #6b7280;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.value {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.table-card,
+.note-card {
+  margin-top: 24px;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+thead {
+  background: #1976d2;
+}
+
+th,
+td {
+  padding: 14px 16px;
+  text-align: left;
+}
+
+th {
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+td {
+  border-bottom: 1px solid #eef2f6;
+  color: #374151;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.note-card p {
+  margin: 0;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.loading,
+.not-found {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+  }
+}

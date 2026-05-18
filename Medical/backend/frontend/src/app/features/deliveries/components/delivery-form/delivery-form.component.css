@@ -1,0 +1,165 @@
+.page {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1976d2;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+}
+
+.section-card {
+  margin-bottom: 24px;
+  padding: 28px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.badge {
+  display: inline-flex;
+  min-width: 34px;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 4px 12px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 1px 0 #eef2f6;
+}
+
+thead {
+  background: #1976d2;
+}
+
+th,
+td {
+  padding: 14px 16px;
+  text-align: left;
+}
+
+th {
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+td {
+  border-bottom: 1px solid #eef2f6;
+  color: #374151;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.empty {
+  text-align: center;
+  padding: 32px 0;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.save-actions {
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 0 16px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+  }
+
+  .save-actions {
+    justify-content: stretch;
+  }
+}

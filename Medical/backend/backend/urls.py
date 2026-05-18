@@ -22,4 +22,6 @@ urlpatterns = [
     path('', lambda request: HttpResponse("API funcionando")),
     path('admin/', admin.site.urls),
     path('api/products/', include('products.urls')),
+    path('api/patients/', include('patients.urls')),
+    path('api/deliveries/', include('deliveries.urls')),
 ]

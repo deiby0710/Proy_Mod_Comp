@@ -1,0 +1,52 @@
+@if (loading) {
+  <div class="loading">Cargando paciente...</div>
+} @else if (patient) {
+  <div class="detail-container">
+    <div class="hero">
+      <div>
+        <button class="back-link" type="button" routerLink="/patients">
+          <mat-icon>arrow_back</mat-icon>
+          Volver a pacientes
+        </button>
+        <h1>{{ patient.patient_name }}</h1>
+        <p class="subtitle">{{ patient.id_type }} {{ patient.identification }}</p>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="label">Identificacion</span>
+        <span class="value">{{ patient.identification }}</span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">Tipo ID</span>
+        <span class="value">{{ patient.id_type }}</span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">Celular</span>
+        <span class="value">{{ patient.phone }}</span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">Fecha nacimiento</span>
+        <span class="value">{{ patient.birth_date | date }}</span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">EPS</span>
+        <span class="value">{{ patient.eps }}</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button routerLink="/patients">Volver</button>
+      <button mat-raised-button color="primary" [routerLink]="['/patients/edit', patient.id]">
+        Editar
+      </button>
+    </div>
+  </div>
+} @else {
+  <div class="not-found">Paciente no encontrado</div>
+}

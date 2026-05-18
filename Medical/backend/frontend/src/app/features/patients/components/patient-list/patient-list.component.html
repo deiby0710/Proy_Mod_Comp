@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="header">
+    <div>
+      <button class="back-link" type="button" routerLink="/">
+        <mat-icon>arrow_back</mat-icon>
+        Menu principal
+      </button>
+      <h1>Pacientes</h1>
+    </div>
+
+    <button mat-raised-button color="primary" routerLink="/patients/new">
+      <mat-icon>add</mat-icon>
+      Nuevo Paciente
+    </button>
+  </div>
+
+  @if (loading) {
+    <div class="loading">Cargando pacientes...</div>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>Identificacion</th>
+          <th>Tipo ID</th>
+          <th>Nombre paciente</th>
+          <th>Celular</th>
+          <th>EPS</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (patient of patients; track patient.id) {
+          <tr>
+            <td class="cell-id">{{ patient.identification }}</td>
+            <td><span class="badge">{{ patient.id_type }}</span></td>
+            <td>
+              <a class="patient-link" [routerLink]="['/patients', patient.id]">
+                {{ patient.patient_name }}
+              </a>
+            </td>
+            <td>{{ patient.phone }}</td>
+            <td>{{ patient.eps }}</td>
+            <td class="actions">
+              <button mat-mini-fab color="primary" [routerLink]="['/patients/edit', patient.id]">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button mat-mini-fab color="warn" (click)="delete(patient.id!)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="empty">No hay pacientes registrados</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

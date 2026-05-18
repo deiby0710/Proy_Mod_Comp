@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="header">
+    <div>
+      <button class="back-link" type="button" routerLink="/">
+        <mat-icon>arrow_back</mat-icon>
+        Menu principal
+      </button>
+      <h1>Entregas</h1>
+    </div>
+
+    <button mat-raised-button color="primary" routerLink="/deliveries/new">
+      <mat-icon>add</mat-icon>
+      Nueva Entrega
+    </button>
+  </div>
+
+  @if (loading) {
+    <div class="loading">Cargando entregas...</div>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Identificacion</th>
+          <th>Paciente</th>
+          <th>EPS</th>
+          <th>Medicamentos</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (delivery of deliveries; track delivery.id) {
+          <tr>
+            <td>{{ delivery.registration_date | date }}</td>
+            <td class="cell-id">{{ delivery.patient_detail?.identification }}</td>
+            <td>
+              <a class="delivery-link" [routerLink]="['/deliveries', delivery.id]">
+                {{ delivery.patient_detail?.patient_name }}
+              </a>
+            </td>
+            <td>{{ delivery.patient_detail?.eps }}</td>
+            <td><span class="badge">{{ delivery.items.length }}</span></td>
+            <td class="actions">
+              <button mat-mini-fab color="primary" [routerLink]="['/deliveries', delivery.id]">
+                <mat-icon>visibility</mat-icon>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="empty">No hay entregas registradas</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

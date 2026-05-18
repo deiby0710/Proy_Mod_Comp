@@ -1,0 +1,73 @@
+<div class="page">
+  <div class="header">
+    <div>
+      <button class="back-link" type="button" routerLink="/patients">
+        <mat-icon>arrow_back</mat-icon>
+        Volver a pacientes
+      </button>
+      <h1>{{ isEdit ? 'Editar Paciente' : 'Nuevo Paciente' }}</h1>
+    </div>
+    <span class="badge">{{ isEdit ? 'Editando' : 'Creacion' }}</span>
+  </div>
+
+  <mat-card class="form-card">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Identificacion</mat-label>
+          <input matInput formControlName="identification">
+          <mat-error>Campo obligatorio</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo ID</mat-label>
+          <mat-select formControlName="id_type">
+            @for (type of idTypes; track type) {
+              <mat-option [value]="type">{{ type }}</mat-option>
+            }
+          </mat-select>
+          <mat-error>Campo obligatorio</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre paciente</mat-label>
+          <input matInput formControlName="patient_name">
+          <mat-error>Campo obligatorio</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Celular</mat-label>
+          <input matInput formControlName="phone">
+          <mat-error>Campo obligatorio</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha nacimiento</mat-label>
+          <input matInput type="date" formControlName="birth_date">
+          <mat-error>Campo obligatorio</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>EPS</mat-label>
+          <mat-select formControlName="eps">
+            @for (eps of epsOptions; track eps) {
+              <mat-option [value]="eps">{{ eps }}</mat-option>
+            }
+          </mat-select>
+          <mat-error>Campo obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="buttons">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || loading">
+          <mat-icon>{{ isEdit ? 'save' : 'add' }}</mat-icon>
+          {{ isEdit ? 'Actualizar' : 'Crear' }}
+        </button>
+
+        <button mat-stroked-button type="button" routerLink="/patients">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

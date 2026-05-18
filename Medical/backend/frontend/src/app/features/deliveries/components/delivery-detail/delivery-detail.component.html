@@ -1,0 +1,86 @@
+@if (loading) {
+  <div class="loading">Cargando entrega...</div>
+} @else if (delivery) {
+  <div class="detail-container">
+    <div class="hero">
+      <div>
+        <button class="back-link" type="button" routerLink="/deliveries">
+          <mat-icon>arrow_back</mat-icon>
+          Volver a entregas
+        </button>
+        <h1>Entrega #{{ delivery.id }}</h1>
+        <p class="subtitle">{{ delivery.registration_date | date }}</p>
+      </div>
+    </div>
+
+    <section class="info-grid">
+      <div class="info-card">
+        <span class="label">Identificacion</span>
+        <span class="value">{{ delivery.patient_detail?.identification }}</span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">Tipo ID</span>
+        <span class="value">{{ delivery.patient_detail?.id_type }}</span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">Paciente</span>
+        <span class="value">{{ delivery.patient_detail?.patient_name }}</span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">Celular</span>
+        <span class="value">{{ delivery.patient_detail?.phone }}</span>
+      </div>
+
+      <div class="info-card">
+        <span class="label">EPS</span>
+        <span class="value">{{ delivery.patient_detail?.eps }}</span>
+      </div>
+    </section>
+
+    <section class="table-card">
+      <h2>Medicamentos entregados</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Medicamento</th>
+            <th>Nombre generico</th>
+            <th>Cantidad prescrita</th>
+            <th>Cantidad dispensada</th>
+            <th>Precio</th>
+            <th>Forma</th>
+            <th>Vence</th>
+            <th>CUM</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (item of delivery.items; track item.id) {
+            <tr>
+              <td>{{ item.product_name }}</td>
+              <td>{{ item.generic_name }}</td>
+              <td>{{ item.prescribed_quantity }}</td>
+              <td>{{ item.dispensed_quantity }}</td>
+              <td>{{ item.price | currency }}</td>
+              <td>{{ item.pharmaceutic_form }}</td>
+              <td>{{ item.final_date | date }}</td>
+              <td>{{ item.cum }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+
+    @if (delivery.note) {
+      <section class="note-card">
+        <h2>Nota</h2>
+        <p>{{ delivery.note }}</p>
+      </section>
+    }
+  </div>
+} @else {
+  <div class="not-found">Entrega no encontrada</div>
+}
