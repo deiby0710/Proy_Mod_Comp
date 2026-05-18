@@ -4,15 +4,15 @@ import { RouterModule } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   imports: [CommonModule, RouterModule, MatButtonModule,
-    MatIconModule, MatSnackBarModule],
+    MatIconModule],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.css']
 })
@@ -25,8 +25,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   constructor(
     private service: ProductService,
     private zone: NgZone,
-    private cdr: ChangeDetectorRef,
-    private snack: MatSnackBar
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -57,14 +56,42 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   delete(id: number) {
+    Swal.fire({
+      icon: 'warning',
+      title: '¿Esta seguro de que desea eliminar este producto?',
+      text: 'Esta accion no se puede deshacer.',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#6c757d'
+    }).then((result) => {
+      if (!result.isConfirmed) {
+        return;
+      }
+
+      this.deleteProduct(id);
+    });
+  }
+
+  private deleteProduct(id: number): void {
     this.service.delete(id).subscribe({
       next: () => {
         this.products = this.products.filter(p => p.id !== id);
-        this.snack.open('Producto eliminado', 'Cerrar', { duration: 3000 });
+        Swal.fire({
+          icon: 'success',
+          title: 'Producto eliminado exitosamente',
+          timer: 1800,
+          showConfirmButton: false
+        });
         this.cdr.detectChanges();
       },
       error: () => {
-        this.snack.open('Error al eliminar', 'Cerrar', { duration: 3000 });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al eliminar producto',
+          text: 'Intenta nuevamente.'
+        });
       }
     });
   }

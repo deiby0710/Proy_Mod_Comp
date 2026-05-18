@@ -14,14 +14,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule,
     MatFormFieldModule, MatInputModule, MatButtonModule,
-    MatCardModule, MatSnackBarModule, MatIconModule],
+    MatCardModule, MatIconModule],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.css']
 })
@@ -35,7 +35,6 @@ export class ProductFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private snack: MatSnackBar,
     private service: ProductService,
     private route: ActivatedRoute,
     private router: Router,
@@ -74,7 +73,11 @@ export class ProductFormComponent implements OnInit {
         this.cdr.detectChanges();
       },
       error: () => {
-        this.snack.open('Error al cargar producto', 'Cerrar', { duration: 3000 });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al cargar producto',
+          text: 'No fue posible obtener la informacion del producto.'
+        });
         this.loading = false;
         this.cdr.detectChanges();
       }
@@ -96,15 +99,21 @@ export class ProductFormComponent implements OnInit {
 
     request.subscribe({
       next: () => {
-        this.snack.open(
-          this.isEdit ? 'Producto actualizado' : 'Producto creado',
-          'Cerrar',
-          { duration: 3000 }
-        );
-        this.router.navigate(['/products']);
+        Swal.fire({
+          icon: 'success',
+          title: this.isEdit ? 'Producto actualizado exitosamente' : 'Producto creado exitosamente',
+          timer: 1800,
+          showConfirmButton: false
+        }).then(() => {
+          this.router.navigate(['/products']);
+        });
       },
       error: () => {
-        this.snack.open('Error al guardar producto', 'Cerrar', { duration: 3000 });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al guardar producto',
+          text: 'Revisa los datos e intenta nuevamente.'
+        });
         this.loading = false;
         this.cdr.detectChanges();
       }
